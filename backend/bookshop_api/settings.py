@@ -100,7 +100,21 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# 1. The URL your HTML will use to load the files
 STATIC_URL = 'static/'
+
+# 2. The exact folder Render will create to store your production files
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# 3. Tells Django to use WhiteNoise to serve and compress the files
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
